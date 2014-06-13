@@ -52,6 +52,11 @@ namespace GameName2.Classes
             {
                 for (int j = 0; j < bricks.GetLength(1); j++)
                 {
+                    //#region Değiştirdiğim alan
+                    //bricks[i, j] = new Brick(graphicsDevice, content, 200, 200);
+                    //bricks[i, j].hasPowerUp = true;
+                    //#endregion
+
                     bricks[i, j] = new Brick(graphicsDevice, content, lastBrickPosition.X, lastBrickPosition.Y);
                     if (i % 2 == 0)
                     {
@@ -80,6 +85,7 @@ namespace GameName2.Classes
             spriteBatch.End();
         }
 
+
         private void DrawBall()
         {
             ball.Draw(spriteBatch);
@@ -92,11 +98,15 @@ namespace GameName2.Classes
             {
                 for (int j = 0; j < bricks.GetLength(1); j++)
                 {
-
+                    bricks[i, j].powerUp.Draw(spriteBatch);
                     if (!bricks[i, j].isDestroyed)
                     {
                         bricks[i, j].Draw(spriteBatch);
-
+                        if (bricks[i,j].powerUp.isActivated)
+                        {
+                            bricks[i, j].powerUp.Draw(spriteBatch);
+                        }
+                        
                     }
                 }
             }
@@ -114,7 +124,7 @@ namespace GameName2.Classes
         {
             ReadGesture();
             UpdateBall();
-            //UpdateBricks();
+            UpdateBricks();
         }
 
         private void UpdateBall()
@@ -139,7 +149,14 @@ namespace GameName2.Classes
 
         private void UpdateBricks()
         {
-            throw new NotImplementedException();
+            for (int i = 0; i < bricks.GetLength(0); i++)
+            {
+                for (int j = 0; j < bricks.GetLength(1); j++)
+                {
+                    bricks[i, j].Move();
+                    bricks[i, j].powerUp.Move();
+                }
+            }
         }
 
         private void UpdatePaddleLeft()
@@ -165,6 +182,7 @@ namespace GameName2.Classes
             CheckBrickCollusion();
         }
 
+
         #region Brick Collusion
         private void CheckBrickCollusion()
         {
@@ -177,11 +195,19 @@ namespace GameName2.Classes
                         musicPlayer.PlayBrickBall();
                         CheckBrickSideCollusion(ball.PositionRectangle, brick.PositionRectangle);
                         brick.isDestroyed = true;
+                        if (brick.powerUp != null)
+                        {
+                            brick.powerUp.isActivated = true;
+                        }
                     }
                     else
                     {
                         break;
                     }
+                }
+                if (paddle.PositionRectangle.Intersects(brick.powerUp.PositionRectangle))
+                {
+                    brick.powerUp.isActivated = false;
                 }
             }
         }
@@ -195,7 +221,7 @@ namespace GameName2.Classes
             }
             else
             {
-
+                ball.xDirection *= -1;
             }
         }
 
@@ -307,6 +333,10 @@ namespace GameName2.Classes
             foreach (var brick in bricks)
             {
                 brick.Load();
+                if (brick.powerUp != null)
+                {
+                    brick.powerUp.Load();
+                }
             }
         }
 

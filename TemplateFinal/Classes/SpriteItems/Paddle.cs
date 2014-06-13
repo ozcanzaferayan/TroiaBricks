@@ -23,12 +23,12 @@ namespace GameName2.Classes.SpriteItems
             this.Color = Color.White;
         }
 
-        internal void Draw(Microsoft.Xna.Framework.Graphics.SpriteBatch spriteBatch)
+        public override void Draw(Microsoft.Xna.Framework.Graphics.SpriteBatch spriteBatch)
         {
             spriteBatch.Draw(Texture, PositionRectangle, Color);
         }
 
-        internal void Load()
+        public override void Load()
         {
             Texture = Content.Load<Texture2D>("BluePaddle");
         }
@@ -47,6 +47,11 @@ namespace GameName2.Classes.SpriteItems
         {
             if (this.PositionRectangle.X <= 0) return;
             else this.PositionRectangle.X -= paddleSpeed;
+        }
+
+        public override void Move()
+        {
+            throw new NotImplementedException();
         }
     }
 }

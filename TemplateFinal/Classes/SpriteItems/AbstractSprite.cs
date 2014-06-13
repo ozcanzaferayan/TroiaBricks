@@ -21,5 +21,12 @@ namespace GameName2.Classes.SpriteItems
         public GraphicsDevice GraphicsDevice { get; set; }
         public Rectangle Screen { get; set; }
         public ContentManager Content { get; set; }
+        public int Speed { get; set; }
+
+        public abstract void Load();
+        public abstract void Draw(Microsoft.Xna.Framework.Graphics.SpriteBatch spriteBatch);
+        public abstract void Move();
+
+        public bool isActivated { get; set; }
     }
 }

@@ -1,5 +1,5 @@
-﻿<xapCache source="C:\Users\-ZaferAYAN-\Documents\GitHub\TroiaBricks\TemplateFinal\Bin\x86\Debug\TemplateFinal_Debug_x86.xap" wasSigned="False" wasTritonized="False" certificateThumbprint="" TimeStampUrl="" signKeyFile="" signKeyPassword="" lastWriteTime="28-May-14 18:11:44">
-  <file source="C:\Users\-ZaferAYAN-\Documents\GitHub\TroiaBricks\TemplateFinal\obj\x86\Debug\TemplateFinal.dll" archivePath="TemplateFinal.dll" lastWriteTime="28-May-14 18:11:32" />
+﻿<xapCache source="C:\Users\-ZaferAYAN-\Documents\GitHub\TroiaBricks\TemplateFinal\Bin\x86\Debug\TemplateFinal_Debug_x86.xap" wasSigned="False" wasTritonized="False" certificateThumbprint="" TimeStampUrl="" signKeyFile="" signKeyPassword="" lastWriteTime="14-Jun-14 01:40:05">
+  <file source="C:\Users\-ZaferAYAN-\Documents\GitHub\TroiaBricks\TemplateFinal\obj\x86\Debug\TemplateFinal.dll" archivePath="TemplateFinal.dll" lastWriteTime="14-Jun-14 01:40:01" />
   <file source="C:\Users\-ZaferAYAN-\Documents\GitHub\TroiaBricks\TemplateFinal\Content\BluePaddle.xnb" archivePath="Content\BluePaddle.xnb" lastWriteTime="22-May-14 17:39:09" />
   <file source="C:\Users\-ZaferAYAN-\Documents\GitHub\TroiaBricks\TemplateFinal\Content\GrayBall.xnb" archivePath="Content\GrayBall.xnb" lastWriteTime="22-May-14 17:36:58" />
   <file source="C:\Users\-ZaferAYAN-\Documents\GitHub\TroiaBricks\TemplateFinal\Content\monster.xnb" archivePath="Content\monster.xnb" lastWriteTime="25-Dec-12 02:40:27" />
@@ -13,7 +13,7 @@
   <file source="C:\Users\-ZaferAYAN-\Documents\GitHub\TroiaBricks\TemplateFinal\Bin\x86\Debug\AppManifest.xaml" archivePath="AppManifest.xaml" lastWriteTime="22-May-14 17:19:39" />
   <file source="C:\Users\-ZaferAYAN-\Documents\GitHub\TroiaBricks\TemplateFinal\Bin\x86\Debug\Assets\ApplicationIcon.png" archivePath="Assets\ApplicationIcon.png" lastWriteTime="10-Dec-12 17:52:22" />
   <file source="C:\Users\-ZaferAYAN-\Documents\GitHub\TroiaBricks\TemplateFinal\Bin\x86\Debug\Assets\Tiles\FlipCycleTileMedium.png" archivePath="Assets\Tiles\FlipCycleTileMedium.png" lastWriteTime="10-Dec-12 17:52:22" />
-  <file source="C:\Users\-ZaferAYAN-\Documents\GitHub\TroiaBricks\MonoGame\MonoGame.Framework\bin\WindowsPhone\x86\Debug\MonoGame.Framework.dll" archivePath="MonoGame.Framework.dll" lastWriteTime="28-May-14 15:31:18" />
+  <file source="C:\Users\-ZaferAYAN-\Documents\GitHub\TroiaBricks\MonoGame\MonoGame.Framework\bin\WindowsPhone\x86\Debug\MonoGame.Framework.dll" archivePath="MonoGame.Framework.dll" lastWriteTime="13-Jun-14 19:07:16" />
   <file source="C:\Users\-ZaferAYAN-\Documents\GitHub\TroiaBricks\MonoGame\MonoGame.Framework\bin\WindowsPhone\x86\Debug\SharpDX.dll" archivePath="SharpDX.dll" lastWriteTime="05-Jul-13 11:20:13" />
   <file source="C:\Users\-ZaferAYAN-\Documents\GitHub\TroiaBricks\MonoGame\MonoGame.Framework\bin\WindowsPhone\x86\Debug\SharpDX.Direct3D11.dll" archivePath="SharpDX.Direct3D11.dll" lastWriteTime="05-Jul-13 11:20:13" />
   <file source="C:\Users\-ZaferAYAN-\Documents\GitHub\TroiaBricks\MonoGame\MonoGame.Framework\bin\WindowsPhone\x86\Debug\SharpDX.XAudio2.dll" archivePath="SharpDX.XAudio2.dll" lastWriteTime="05-Jul-13 11:20:13" />

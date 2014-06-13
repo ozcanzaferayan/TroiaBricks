@@ -11,12 +11,12 @@ namespace GameName2.Classes.SpriteItems
 {
     public class Ball : AbstractSprite
     {
-        public int ballSpeed = 5;
         public int xDirection = -1;
         public int yDirection = -1;
         public bool isSticked = true;
         public Ball(Microsoft.Xna.Framework.Graphics.GraphicsDevice graphicsDevice, ContentManager content)
         {
+            this.Speed = 5;
             this.Width = 20;
             this.Height = 20;
             this.GraphicsDevice = graphicsDevice;
@@ -26,23 +26,23 @@ namespace GameName2.Classes.SpriteItems
             this.Color = Color.White;
         }
 
-        internal void Draw(Microsoft.Xna.Framework.Graphics.SpriteBatch spriteBatch)
+        public override void Draw(Microsoft.Xna.Framework.Graphics.SpriteBatch spriteBatch)
         {
             spriteBatch.Draw(Texture, PositionRectangle, Color);
         }
 
-        internal void Move()
+        public override void Move()
         {
-            this.PositionRectangle.X += ballSpeed * xDirection; 
-            this.PositionRectangle.Y += ballSpeed * yDirection;
+            this.PositionRectangle.X += Speed * xDirection; 
+            this.PositionRectangle.Y += Speed * yDirection;
         }
 
-        internal void MoveWithPaddle(Rectangle paddleRectangle)
+        public void MoveWithPaddle(Rectangle paddleRectangle)
         {
             this.PositionRectangle.X = paddleRectangle.X + this.Width;
         }
 
-        internal void Load()
+        public override void Load()
         {
             this.Texture = Content.Load<Texture2D>("GrayBall");
         }
