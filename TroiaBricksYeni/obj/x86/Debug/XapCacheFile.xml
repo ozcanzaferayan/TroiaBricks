@@ -1,0 +1,21 @@
+﻿<xapCache source="C:\Users\-ZaferAYAN-\Documents\GitHub\TroiaBricks\TroiaBricksYeni\bin\WindowsPhone\x86\Debug\TroiaBricksYeni_Debug_x86.xap" wasSigned="False" wasTritonized="False" certificateThumbprint="" TimeStampUrl="" signKeyFile="" signKeyPassword="" lastWriteTime="14-Jun-14 17:34:48">
+  <file source="C:\Users\-ZaferAYAN-\Documents\GitHub\TroiaBricks\TroiaBricksYeni\obj\x86\Debug\TroiaBricksYeni.dll" archivePath="TroiaBricksYeni.dll" lastWriteTime="14-Jun-14 17:34:47" />
+  <file source="C:\Users\-ZaferAYAN-\Documents\GitHub\TroiaBricks\TroiaBricksYeni\Assets\AlignmentGrid.png" archivePath="Assets\AlignmentGrid.png" lastWriteTime="05-Apr-14 15:50:56" />
+  <file source="C:\Users\-ZaferAYAN-\Documents\GitHub\TroiaBricks\TroiaBricksYeni\Assets\Tiles\FlipCycleTileLarge.png" archivePath="Assets\Tiles\FlipCycleTileLarge.png" lastWriteTime="05-Apr-14 15:50:56" />
+  <file source="C:\Users\-ZaferAYAN-\Documents\GitHub\TroiaBricks\TroiaBricksYeni\Assets\Tiles\FlipCycleTileSmall.png" archivePath="Assets\Tiles\FlipCycleTileSmall.png" lastWriteTime="05-Apr-14 15:50:56" />
+  <file source="C:\Users\-ZaferAYAN-\Documents\GitHub\TroiaBricks\TroiaBricksYeni\Assets\Tiles\IconicTileMediumLarge.png" archivePath="Assets\Tiles\IconicTileMediumLarge.png" lastWriteTime="05-Apr-14 15:50:58" />
+  <file source="C:\Users\-ZaferAYAN-\Documents\GitHub\TroiaBricks\TroiaBricksYeni\Assets\Tiles\IconicTileSmall.png" archivePath="Assets\Tiles\IconicTileSmall.png" lastWriteTime="05-Apr-14 15:50:58" />
+  <file source="C:\Users\-ZaferAYAN-\Documents\GitHub\TroiaBricks\TroiaBricksYeni\bin\WindowsPhone\x86\Debug\AppManifest.xaml" archivePath="AppManifest.xaml" lastWriteTime="14-Jun-14 15:42:27" />
+  <file source="C:\Users\-ZaferAYAN-\Documents\GitHub\TroiaBricks\TroiaBricksYeni\bin\WindowsPhone\x86\Debug\Assets\ApplicationIcon.png" archivePath="Assets\ApplicationIcon.png" lastWriteTime="05-Apr-14 15:50:56" />
+  <file source="C:\Users\-ZaferAYAN-\Documents\GitHub\TroiaBricks\TroiaBricksYeni\bin\WindowsPhone\x86\Debug\Assets\Tiles\FlipCycleTileMedium.png" archivePath="Assets\Tiles\FlipCycleTileMedium.png" lastWriteTime="05-Apr-14 15:50:56" />
+  <file source="C:\Program Files (x86)\MonoGame\v3.0\Assemblies\WindowsPhone\x86\MonoGame.Framework.dll" archivePath="MonoGame.Framework.dll" lastWriteTime="06-Apr-14 00:55:46" />
+  <file source="C:\Program Files (x86)\MonoGame\v3.0\Assemblies\WindowsPhone\x86\SharpDX.dll" archivePath="SharpDX.dll" lastWriteTime="05-Apr-14 23:51:04" />
+  <file source="C:\Program Files (x86)\MonoGame\v3.0\Assemblies\WindowsPhone\x86\SharpDX.Direct3D11.dll" archivePath="SharpDX.Direct3D11.dll" lastWriteTime="05-Apr-14 23:51:04" />
+  <file source="C:\Program Files (x86)\MonoGame\v3.0\Assemblies\WindowsPhone\x86\SharpDX.XAudio2.dll" archivePath="SharpDX.XAudio2.dll" lastWriteTime="05-Apr-14 23:51:04" />
+  <file source="C:\Program Files (x86)\MonoGame\v3.0\Assemblies\WindowsPhone\x86\SharpDX.DXGI.dll" archivePath="SharpDX.DXGI.dll" lastWriteTime="05-Apr-14 23:51:04" />
+  <file source="C:\Program Files (x86)\MonoGame\v3.0\Assemblies\WindowsPhone\x86\SharpDX.xml" archivePath="SharpDX.xml" lastWriteTime="05-Apr-14 23:51:06" />
+  <file source="C:\Program Files (x86)\MonoGame\v3.0\Assemblies\WindowsPhone\x86\SharpDX.Direct3D11.xml" archivePath="SharpDX.Direct3D11.xml" lastWriteTime="05-Apr-14 23:51:04" />
+  <file source="C:\Program Files (x86)\MonoGame\v3.0\Assemblies\WindowsPhone\x86\SharpDX.XAudio2.xml" archivePath="SharpDX.XAudio2.xml" lastWriteTime="05-Apr-14 23:51:04" />
+  <file source="C:\Program Files (x86)\MonoGame\v3.0\Assemblies\WindowsPhone\x86\SharpDX.DXGI.xml" archivePath="SharpDX.DXGI.xml" lastWriteTime="05-Apr-14 23:51:04" />
+  <file source="C:\Users\-ZaferAYAN-\Documents\GitHub\TroiaBricks\TroiaBricksYeni\bin\WindowsPhone\x86\Debug\Properties\WMAppManifest.xml" archivePath="WMAppManifest.xml" lastWriteTime="14-Jun-14 15:42:27" />
+</xapCache>

@@ -73,13 +73,17 @@
       <DependentUpon>App.xaml</DependentUpon>
     </Compile>
     <Compile Include="Classes\SpriteItems\AbstractSprite.cs" />
+    <Compile Include="Classes\SpriteItems\Background.cs" />
     <Compile Include="Classes\SpriteItems\Ball.cs" />
     <Compile Include="Classes\SpriteItems\Brick.cs" />
     <Compile Include="Classes\GameGesture.cs" />
     <Compile Include="Classes\MusicPlayer.cs" />
+    <Compile Include="Classes\SpriteItems\Health.cs" />
     <Compile Include="Classes\SpriteItems\Paddle.cs" />
     <Compile Include="Classes\Register.cs" />
     <Compile Include="Classes\SpriteItems\PowerUps\SplitBall.cs" />
+    <Compile Include="Classes\SpriteItems\Font.cs" />
+    <Compile Include="Classes\SpriteItems\Score.cs" />
     <Compile Include="Classes\Stages\Stage1.cs" />
     <Compile Include="Classes\Stages\StageCreator.cs" />
     <Compile Include="LocalizedStrings.cs" />
@@ -117,8 +121,12 @@
     </Content>
     <None Include="Content\BluePaddle.xnb" />
     <None Include="Content\GrayBall.xnb" />
+    <None Include="Content\GreenBackground.xnb" />
+    <None Include="Content\RedBall.xnb" />
     <None Include="Content\RedBrick.xnb" />
+    <None Include="Content\ShrinkPaddle.xnb" />
     <None Include="Content\SplitBall.xnb" />
+    <None Include="Content\Time.xnb" />
     <None Include="Properties\AppManifest.xml" />
     <None Include="Properties\WMAppManifest.xml">
       <SubType>Designer</SubType>

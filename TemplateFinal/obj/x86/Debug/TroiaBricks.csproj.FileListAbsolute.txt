@@ -36,3 +36,7 @@ C:\Users\-ZaferAYAN-\Documents\GitHub\TroiaBricks\TemplateFinal\obj\x86\Debug\Tr
 C:\Users\-ZaferAYAN-\Documents\GitHub\TroiaBricks\TemplateFinal\obj\x86\Debug\TemplateFinal.dll
 C:\Users\-ZaferAYAN-\Documents\GitHub\TroiaBricks\TemplateFinal\obj\x86\Debug\TemplateFinal.pdb
 C:\Users\-ZaferAYAN-\Documents\GitHub\TroiaBricks\TemplateFinal\obj\x86\Debug\XapCacheFile.xml
+C:\Users\-ZaferAYAN-\Documents\GitHub\TroiaBricks\TemplateFinal\Bin\x86\Debug\Content\ShrinkPaddle.xnb
+C:\Users\-ZaferAYAN-\Documents\GitHub\TroiaBricks\TemplateFinal\Bin\x86\Debug\Content\Time.xnb
+C:\Users\-ZaferAYAN-\Documents\GitHub\TroiaBricks\TemplateFinal\Bin\x86\Debug\Content\GreenBackground.xnb
+C:\Users\-ZaferAYAN-\Documents\GitHub\TroiaBricks\TemplateFinal\Bin\x86\Debug\Content\RedBall.xnb

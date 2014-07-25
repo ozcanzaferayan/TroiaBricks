@@ -8,6 +8,10 @@ using Microsoft.Xna.Framework.Input;
 using Microsoft.Xna.Framework.Content;
 using GameName2.Classes.SpriteItems;
 using GameName2.Classes.Stages;
+using TemplateFinal.Classes.SpriteItems;
+using Microsoft.Xna.Framework.GamerServices;
+using System.Windows;
+using System.Windows.Navigation;
 namespace GameName2.Classes
 {
     public class Register
@@ -16,24 +20,40 @@ namespace GameName2.Classes
 
 
 
-        Paddle paddle;
+        static Paddle paddle;
         GraphicsDevice graphicsDevice;
         Rectangle screen;
         SpriteBatch spriteBatch;
         Brick[,] bricks;
         Ball ball;
+        List<Ball> balls;
         ContentManager content;
         MusicPlayer musicPlayer;
-
+        Time time;
+        Rectangle stageScreen;
+        Random r;
+        Score score;
+        bool isMessageShowing = false;
+        List<Health> lives;
+        Background background;
         public Register(GraphicsDevice GraphicsDevice, ContentManager Content)
         {
+            r = new Random();
             this.graphicsDevice = GraphicsDevice;
             this.content = Content;
             this.musicPlayer = new MusicPlayer(Content);
             screen = graphicsDevice.Viewport.Bounds;
             paddle = new Paddle(graphicsDevice, content);
+            lives = new List<Health>(paddle.lives);
             bricks = new Brick[5, 5];
-            ball = new Ball(graphicsDevice, Content);
+            balls = new List<Ball>();
+            Ball b = new Ball(graphicsDevice, Content);
+            stageScreen = screen;
+            background = new Background(graphicsDevice, content);
+            time = new Time(graphicsDevice, content, 10, 10);
+            score = new Score(graphicsDevice, content, 10, 10);
+            b.isActivated = true;
+            balls.Add(b);
             GenerateStage();
         }
 
@@ -44,19 +64,17 @@ namespace GameName2.Classes
 
         private void GenerateStage()
         {
-            Rectangle lastBrickPosition = screen;
-            lastBrickPosition.X += 10;
-            lastBrickPosition.Y += 10;
+            Rectangle lastBrickPosition = stageScreen;
+            lastBrickPosition.X += 20;
+            lastBrickPosition.Y += 50;
+            stageScreen.X = lastBrickPosition.X;
+            stageScreen.Y = lastBrickPosition.Y;
+
 
             for (int i = 0; i < bricks.GetLength(0); i++)
             {
                 for (int j = 0; j < bricks.GetLength(1); j++)
                 {
-                    //#region Değiştirdiğim alan
-                    //bricks[i, j] = new Brick(graphicsDevice, content, 200, 200);
-                    //bricks[i, j].hasPowerUp = true;
-                    //#endregion
-
                     bricks[i, j] = new Brick(graphicsDevice, content, lastBrickPosition.X, lastBrickPosition.Y);
                     if (i % 2 == 0)
                     {
@@ -72,6 +90,14 @@ namespace GameName2.Classes
                 else lastBrickPosition.X += bricks[0, 0].Width + 10;
                 lastBrickPosition.Y += bricks[0, 0].Height + 5;
             }
+
+            Rectangle lastPaddlePosition = new Rectangle(5, 20, 0, 0);
+            for (int i = 0; i < lives.Capacity; i++)
+            {
+                lives.Add(new Health(graphicsDevice, content,
+                    lastPaddlePosition.X, lastPaddlePosition.Y));
+                lastPaddlePosition.X += lives[i].Width + 5;
+            }
         }
 
         #region Drawing Elements
@@ -79,32 +105,71 @@ namespace GameName2.Classes
         internal void DrawElements()
         {
             spriteBatch.Begin();
+            DrawBackground();
             DrawPaddle();
             DrawBricks();
-            DrawBall();
+            DrawBalls();
+            DrawTime();
+            DrawScore();
+            DrawLives();
             spriteBatch.End();
         }
 
-
-        private void DrawBall()
+        private void DrawBackground()
         {
-            ball.Draw(spriteBatch);
+            background.Draw(spriteBatch);
+        }
+
+        private void DrawLives()
+        {
+            foreach (var life in lives)
+            {
+                life.Draw(spriteBatch);
+            }
+        }
+
+        private void DrawScore()
+        {
+            score.Draw(spriteBatch);
+        }
+
+        private void DrawTime()
+        {
+            time.Draw(spriteBatch);
+        }
+
+
+        private void DrawBalls()
+        {
+            foreach (var ball in balls)
+            {
+                if (ball.isActivated)
+                {
+                    ball.Draw(spriteBatch);
+                }
+            }
         }
 
         private void DrawBricks()
         {
-
             for (int i = 0; i < bricks.GetLength(0); i++)
             {
                 for (int j = 0; j < bricks.GetLength(1); j++)
                 {
-                    bricks[i, j].powerUp.Draw(spriteBatch);
+                    if (bricks[i,j].powerUp != null)
+                    {
+                        bricks[i, j].powerUp.Draw(spriteBatch);
+                    }
                     if (!bricks[i, j].isDestroyed)
                     {
                         bricks[i, j].Draw(spriteBatch);
-                        if (bricks[i,j].powerUp.isActivated)
+                        if (bricks[i,j] != null && bricks[i,j].powerUp != null)
                         {
-                            bricks[i, j].powerUp.Draw(spriteBatch);
+                            if (bricks[i,j].powerUp.isActivated )
+                            {
+                                bricks[i, j].powerUp.Draw(spriteBatch);
+                            }
+                            
                         }
                         
                     }
@@ -120,7 +185,7 @@ namespace GameName2.Classes
         #endregion
 
         #region Updating Elements
-        internal void UpdateElements()
+        public void UpdateElements()
         {
             ReadGesture();
             UpdateBall();
@@ -129,22 +194,28 @@ namespace GameName2.Classes
 
         private void UpdateBall()
         {
-            if (ball.isSticked)
+            foreach (var ball in balls)
             {
-                if (GameGesture.IsDoubleTapped())
+                if (ball.isSticked)
                 {
-                    ball.isSticked = false;
-                    ball.Move();
+                    if (GameGesture.IsDoubleTapped())
+                    {
+                        ball.isSticked = false;
+                        ball.xDirection = -1;
+                        ball.yDirection = -1;
+                        ball.Move();
+                    }
+                    else
+                    {
+                        ball.MoveWithPaddle(paddle.PositionRectangle);
+                    }
                 }
                 else
                 {
-                    ball.MoveWithPaddle(paddle.PositionRectangle);
+                    ball.Move();
                 }
             }
-            else
-            {
-                ball.Move();
-            }
+            
         }
 
         private void UpdateBricks()
@@ -154,16 +225,21 @@ namespace GameName2.Classes
                 for (int j = 0; j < bricks.GetLength(1); j++)
                 {
                     bricks[i, j].Move();
-                    bricks[i, j].powerUp.Move();
+                    if (bricks[i,j].powerUp != null)
+                    {
+                        balls.First().Speed = (paddle.injuredCount + 2)*2;
+                        bricks[i, j].powerUp.Move();
+                    }
+                    
                 }
             }
         }
 
-        private void UpdatePaddleLeft()
+        private static void UpdatePaddleLeft()
         {
             paddle.GoRight();
         }
-        private void UpdatePaddleRight()
+        private static void UpdatePaddleRight()
         {
             paddle.GoLeft();
         }
@@ -188,32 +264,45 @@ namespace GameName2.Classes
         {
             foreach (var brick in bricks)
             {
-                if (ball.PositionRectangle.Intersects(brick.PositionRectangle))
+                foreach (var ball in balls)
                 {
-                    if (!brick.isDestroyed)
+                    if (ball.PositionRectangle.Intersects(brick.PositionRectangle))
                     {
-                        musicPlayer.PlayBrickBall();
-                        CheckBrickSideCollusion(ball.PositionRectangle, brick.PositionRectangle);
-                        brick.isDestroyed = true;
-                        if (brick.powerUp != null)
+                        if (!brick.isDestroyed)
                         {
-                            brick.powerUp.isActivated = true;
+                            musicPlayer.PlayBrickBall();
+                            CheckBrickSideCollusion(ball, ball.PositionRectangle, brick.PositionRectangle);
+                            brick.isDestroyed = true;
+                            score.score += 100;
+                            if (brick.powerUp != null)
+                            {
+                                brick.powerUp.isActivated = true;
+                            }
+                        }
+                        else
+                        {
+                            break;
                         }
                     }
-                    else
+                }
+                if (brick.powerUp!= null)
+                {
+                    if (paddle.PositionRectangle.Intersects(brick.powerUp.PositionRectangle))
                     {
-                        break;
+                        paddle.injuredCount++;
+                        brick.powerUp.isActivated = false;
+                        brick.powerUp = null;
+                        paddle.PositionRectangle.Width /= 2;
+                        paddle.Width /= 2;
+
                     }
                 }
-                if (paddle.PositionRectangle.Intersects(brick.powerUp.PositionRectangle))
-                {
-                    brick.powerUp.isActivated = false;
-                }
+                
             }
         }
 
 
-        private void CheckBrickSideCollusion(Rectangle ballRectangle, Rectangle brickRectangle)
+        private void CheckBrickSideCollusion(Ball ball, Rectangle ballRectangle, Rectangle brickRectangle)
         {
             if (brickRectangle.Center.Y < (ballRectangle.Center.Y + ballRectangle.Height / 2)) // Brick Bottom or Top
             {
@@ -229,63 +318,112 @@ namespace GameName2.Classes
 
         private void CheckRightScreenCollision()
         {
-            if (ball.PositionRectangle.X >= screen.Width - ball.Width)
+            foreach (var ball in balls)
             {
-                ball.xDirection *= -1;
+                if (ball.PositionRectangle.X >= screen.Width - ball.Width)
+                {
+                    ball.xDirection *= -1;
+                }
             }
         }
 
         private void CheckBallScreenCollision()
         {
-            if (ball.PositionRectangle.X <= 0)
+            foreach (var ball in balls)
             {
-                ball.xDirection *= -1;
+                if (ball.PositionRectangle.X <= 0)
+                {
+                    ball.xDirection *= -1;
+                }
             }
         }
 
         private void CheckTopScreenCollision()
         {
-            if (ball.PositionRectangle.Y <= 0)
+            foreach (var ball in balls)
             {
-                ball.yDirection *= -1;
+                if (ball.PositionRectangle.Y <= stageScreen.Y)
+                {
+                    ball.yDirection *= -1;
+                }
             }
         }
 
         private void CheckBottomScreenCollision()
         {
-            if (ball.PositionRectangle.Y >= screen.Height)
-            {
-                ball.PositionRectangle = new Rectangle(screen.Width / 2, screen.Height - 200, ball.Width, ball.Height);
-            }
+            
+                if (balls.First().PositionRectangle.Y >= screen.Height)
+                {
+                    if (lives.Count == 0)
+                    {
+                        IAsyncResult result = Guide.BeginShowMessageBox(
+                            "Hiç canınız kalmadı!",
+                            "Skorunuz: " + score.score,
+                            new string[] { "Tamam" },
+                            0,
+                            Microsoft.Xna.Framework.GamerServices.MessageBoxIcon.Warning,
+                            null,
+                            null);
+                        //int? choice = Microsoft.Xna.Framework.GamerServices.Guide.EndShowMessageBox(result);
+                        //if (choice.HasValue)
+                        //{
+                        //    balls.First().MoveWithPaddle(paddle.PositionRectangle);
+                        //    UpdateBall();
+                        //}
+                    }
+                    else
+                    {
+                        lives.Remove(lives.Last());
+                        IAsyncResult result = Guide.BeginShowMessageBox(
+                            "Canlarınızdan biri gitti!",
+                            "Dikkatli olun, böyle giderse oyunu kaybedeceksiniz.",
+                            new string[] { "Tamam" },
+                            0,
+                            Microsoft.Xna.Framework.GamerServices.MessageBoxIcon.Warning,
+                            null,
+                            null);
+                        int? choice = Microsoft.Xna.Framework.GamerServices.Guide.EndShowMessageBox(result);
+                        if (choice.HasValue)
+                        {
+                            balls.First().MoveWithPaddle(paddle.PositionRectangle);
+                            UpdateBall();
+                        }
+                    }
+                }
+                   
         }
+            
 
         private void CheckPaddleCollision()
         {
-            if (ball.PositionRectangle.Intersects(paddle.PositionRectangle))
+            foreach (var ball in balls)
             {
-                ball.yDirection *= -1;
-                if (ball.PositionRectangle.Center.X >= paddle.PositionRectangle.Center.X) // Paddle right side
+                if (ball.PositionRectangle.Intersects(paddle.PositionRectangle))
                 {
-                    if (ball.xDirection == -1)
+                    ball.yDirection *= -1;
+                    if (ball.PositionRectangle.Center.X >= paddle.PositionRectangle.Center.X) // Paddle right side
                     {
-                        ball.xDirection *= -1; // Send ball the way which came
+                        if (ball.xDirection == -1)
+                        {
+                            ball.xDirection *= -1; // Send ball the way which came
+                        }
+                        else
+                        {
+                            ball.xDirection = 1; // Send ball the opposite way which came
+                        }
                     }
-                    else
+                    else if (ball.PositionRectangle.Center.X < paddle.PositionRectangle.Center.X) // Paddle left side
                     {
-                        ball.xDirection = 1; // Send ball the opposite way which came
-                    }
-                }
-                else if (ball.PositionRectangle.Center.X < paddle.PositionRectangle.Center.X) // Paddle left side
-                {
-                    if (ball.xDirection == -1)
-                    {
-                        ball.xDirection = -1; // Send ball the opposite way which came
-                    }
-                    else
-                    {
-                        ball.xDirection *= -1; // Send ball the way which came
-                    }
+                        if (ball.xDirection == -1)
+                        {
+                            ball.xDirection = -1; // Send ball the opposite way which came
+                        }
+                        else
+                        {
+                            ball.xDirection *= -1; // Send ball the way which came
+                        }
 
+                    }
                 }
             }
         }
@@ -293,7 +431,7 @@ namespace GameName2.Classes
 
 
 
-        internal void ReadGesture()
+        public static void ReadGesture()
         {
             GameGesture.GestureMoves gest = GameGesture.ReadGesture();
             switch (gest)
@@ -321,6 +459,33 @@ namespace GameName2.Classes
             LoadBall();
             LoadBrick();
             LoadPaddle();
+            LoadTime();
+            LoadScore();
+            LoadLives();
+            LoadBackground();
+        }
+
+        private void LoadBackground()
+        {
+            background.Load();
+        }
+
+        private void LoadLives()
+        {
+            foreach (var life in lives)
+            {
+                life.Load();
+            }
+        }
+
+        private void LoadScore()
+        {
+            score.Load();
+        }
+
+        private void LoadTime()
+        {
+            time.Load();
         }
 
         private void LoadPaddle()
@@ -333,16 +498,16 @@ namespace GameName2.Classes
             foreach (var brick in bricks)
             {
                 brick.Load();
-                if (brick.powerUp != null)
-                {
-                    brick.powerUp.Load();
-                }
+                brick.powerUp.Load();
             }
         }
 
         private void LoadBall()
         {
-            ball.Load();
+            foreach (var ball in balls)
+            {
+                ball.Load();
+            }
         }
         #endregion
     }

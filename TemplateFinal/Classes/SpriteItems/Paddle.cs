@@ -11,15 +11,21 @@ namespace GameName2.Classes.SpriteItems
 {
     public class Paddle : AbstractSprite
     {
-        private int paddleSpeed = 10;
+        private int paddleSpeed = 7;
+        public int injuredCount = 0;
+        public int lives = 3;
+        public int initialWidth;
+        public Rectangle initialPositionRectangle;
         public Paddle(Microsoft.Xna.Framework.Graphics.GraphicsDevice graphicsDevice, ContentManager content)
         {
             this.Width = 200;
+            this.initialWidth = this.Width;
             this.Height = 10;
             this.GraphicsDevice = graphicsDevice;
             this.Content = content;
             this.Screen = graphicsDevice.Viewport.Bounds;
             this.PositionRectangle = new Rectangle(Screen.Width / 2 - 50, Screen.Height - 25, this.Width, this.Height);
+            this.initialPositionRectangle = this.PositionRectangle;
             this.Color = Color.White;
         }
 

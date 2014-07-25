@@ -27,7 +27,7 @@ namespace TemplateFinal.Classes.SpriteItems.SpecialFeatures
 
         public override void Load()
         {
-            this.Texture = Content.Load<Texture2D>("SplitBall");
+            this.Texture = Content.Load<Texture2D>("ShrinkPaddle");
         }
 
         public override void Draw(Microsoft.Xna.Framework.Graphics.SpriteBatch spriteBatch)

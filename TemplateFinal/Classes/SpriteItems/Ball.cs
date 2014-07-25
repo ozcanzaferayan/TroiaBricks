@@ -39,12 +39,15 @@ namespace GameName2.Classes.SpriteItems
 
         public void MoveWithPaddle(Rectangle paddleRectangle)
         {
+            this.isSticked = true;
             this.PositionRectangle.X = paddleRectangle.X + this.Width;
+            this.PositionRectangle.Y = paddleRectangle.Y - 20;
+            Register.ReadGesture();
         }
 
         public override void Load()
         {
-            this.Texture = Content.Load<Texture2D>("GrayBall");
+            this.Texture = Content.Load<Texture2D>("RedBall");
         }
 
 
