@@ -5,7 +5,7 @@ This Windows Phone 8 Game is actually looks like classic ball-and-paddle arcade 
 
 This project building on MonoGame XNA Environment but in the future will be ported to Unity 3D.
 
-Screenshot:
+Screenshots:
 
 ![alt tag](https://raw.githubusercontent.com/ozcanzaferayan/TroiaBricks/master/Screenshots/TroicaBricks1.png)
 ![alt tag](https://raw.githubusercontent.com/ozcanzaferayan/TroiaBricks/master/Screenshots/TroiaBricks2.png)
